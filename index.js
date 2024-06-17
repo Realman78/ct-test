@@ -27,7 +27,7 @@ app.post("/extension", (req, res) => {
     const freeItemInCart = cart.lineItems.some(
       (item) => {
         if (item.custom && item.custom.type && item.custom.type.id === freeTypeId) {
-          freeItemProductId = item.productId;
+          freeItemProductId = item.id;
           return true;
         }
         return false;
