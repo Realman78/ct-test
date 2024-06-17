@@ -21,11 +21,17 @@ app.post("/extension", (req, res) => {
   const cart = req.body.resource.obj;
   console.log(cart.lineItems);
   const actions = [];
+  let freeItemProductId = "";
 
   if (action === "Update") {
     const freeItemInCart = cart.lineItems.some(
-      (item) =>
-        item.custom && item.custom.type && item.custom.type.id === freeTypeId
+      (item) => {
+        if (item.custom && item.custom.type && item.custom.type.id === freeTypeId) {
+          freeItemProductId = item.productId;
+          return true;
+        }
+        return false;
+	    }
     );
 
     const totalPrice = cart.totalPrice.centAmount;
@@ -82,7 +88,7 @@ app.post("/extension", (req, res) => {
     } else if (freeItemInCart && totalPrice <= threshold) {
       actions.push({
         action: "removeLineItem",
-        lineItemId: '0168f47e-fb8f-49ff-9d51-4da3bcfac553',
+        lineItemId: freeItemProductId,
         quantity: 1,
         externalPrice: {
           currencyCode: "EUR",
