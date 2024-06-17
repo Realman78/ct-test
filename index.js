@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const port = 3000;
+const port = 8080;
 
 const freeTypeId = "9a4f1cbe-3d7f-4595-81c2-5c1e06a60f21";
 const addressKey = "exampleKey";
