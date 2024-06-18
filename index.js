@@ -98,7 +98,7 @@ app.post("/extension", (req, res) => {
           targets: [
             {
               addressKey: "exampleKey",
-              quantity: 2,
+              quantity: 1,
             },
           ],
         },
